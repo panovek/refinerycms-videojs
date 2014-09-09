@@ -61,7 +61,7 @@ module Refinery
           if file.use_external
             sources << ["<source src='#{file.external_url}' type='#{file.file_mime_type}'/>"]
           else
-            sources << ["<source src='#{file.url}' type='#{file.file_mime_type}'/>"]
+            sources << ["<source src='#{file.file.remote_url}' type='#{file.file_mime_type}'/>"]
           end if file.exist?
         end
         html = %Q{<video id="video_#{self.id}" class="video-js #{Refinery::Videos.skin_css_class}" width="#{config[:width]}" height="#{config[:height]}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
