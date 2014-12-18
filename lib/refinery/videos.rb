@@ -1,7 +1,5 @@
 require 'refinerycms-core'
 require 'dragonfly'
-require 'rack/cache'
-
 
 module Refinery
   autoload :VideosGenerator, 'generators/refinery/videos_generator'
