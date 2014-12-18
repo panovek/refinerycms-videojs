@@ -39,13 +39,6 @@ module Refinery
 
         def attach!(app)
           if defined?(::Rack::Cache)
-            unless app.config.action_controller.perform_caching && app.config.action_dispatch.rack_cache
-              app.config.middleware.insert 0, ::Rack::Cache, {
-                verbose: true,
-                metastore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
-                entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
-              }
-            end
             app.config.middleware.insert_after ::Rack::Cache, ::Dragonfly::Middleware, :refinery_videos
           else
             app.config.middleware.use ::Dragonfly::Middleware, :refinery_videos
