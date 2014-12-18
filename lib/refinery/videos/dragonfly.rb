@@ -38,11 +38,7 @@ module Refinery
         end
 
         def attach!(app)
-          if defined?(::Rack::Cache)
-            app.config.middleware.insert_after ::Rack::Cache, ::Dragonfly::Middleware, :refinery_videos
-          else
-            app.config.middleware.use ::Dragonfly::Middleware, :refinery_videos
-          end
+          app.config.middleware.use ::Dragonfly::Middleware, :refinery_videos
         end
       end
 
