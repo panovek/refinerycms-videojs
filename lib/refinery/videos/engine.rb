@@ -6,7 +6,7 @@ module Refinery
 
       engine_name :refinery_videos
 
-      initializer 'attach-refinery-videos-with-dragonfly', :after => :load_config_initializers do |app|
+      initializer 'attach-refinery-videos-with-dragonfly', :before => :finisher_hook do |app|
         ::Refinery::Videos::Dragonfly.configure!
         ::Refinery::Videos::Dragonfly.attach!(app)
       end
