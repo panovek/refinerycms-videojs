@@ -6,7 +6,7 @@ module Refinery
 
       class << self
         def setup!
-          app_videos = ::Dragonfly[:refinery_videos]
+          app_videos = ::Dragonfly.app(:refinery_videos)
 
           app_videos.define_macro(::Refinery::Videos::VideoFile, :video_accessor)
 
@@ -15,7 +15,7 @@ module Refinery
         end
 
         def configure!
-          app_videos = ::Dragonfly[:refinery_videos]
+          app_videos = ::Dragonfly.app(:refinery_videos)
           app_videos.configure_with(:rails) do |c|
             #c.datastore = ::Dragonfly::DataStorage::MongoDataStore.new(:db => MongoMapper.database)
             c.datastore.root_path = Refinery::Videos.datastore_root_path
