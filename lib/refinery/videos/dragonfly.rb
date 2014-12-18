@@ -38,15 +38,18 @@ module Refinery
         end
 
         def attach!(app)
-          ### Extend active record ###
-          app.config.middleware.insert_before Refinery::Videos.dragonfly_insert_before,
-                                              'Dragonfly::Middleware', :refinery_videos
-
-          app.config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
-              :verbose     => Rails.env.development?,
-              :metastore   => "file:#{URI.encode(Rails.root.join('tmp', 'dragonfly', 'cache', 'meta').to_s)}",
-              :entitystore => "file:#{URI.encode(Rails.root.join('tmp', 'dragonfly', 'cache', 'body').to_s)}"
-          }
+          if defined?(::Rack::Cache)
+            unless app.config.action_controller.perform_caching && app.config.action_dispatch.rack_cache
+              app.config.middleware.insert 0, ::Rack::Cache, {
+                verbose: true,
+                metastore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
+                entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+              }
+            end
+            app.config.middleware.insert_after ::Rack::Cache, ::Dragonfly::Middleware, :refinery_videos
+          else
+            app.config.middleware.use ::Dragonfly::Middleware, :refinery_videos
+          end
         end
       end
 
