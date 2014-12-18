@@ -1,4 +1,4 @@
-Refinery::Core::Engine.routes.append do
+Refinery::Core::Engine.routes.draw do
   get '/system/videos/*dragonfly', :to => Dragonfly.app(:refinery_videos)
 
   # Frontend routes
