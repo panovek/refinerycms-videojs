@@ -32,7 +32,7 @@ module Refinery
         end
 
         def attach!
-          app.config.middleware.use ::Dragonfly::Middleware, :refinery_videos
+          Rails.application.config.middleware.use ::Dragonfly::Middleware, :refinery_videos
         end
       end
 
