@@ -6,7 +6,7 @@
                :include_object_name => true %>
 
     <div class='field'>
-      <%= f.label t('.title') %>
+      <%= f.label :title, t('.title') %>
       <%= f.text_field :title, :required => true  %>
     </div>
 
@@ -26,11 +26,11 @@
     <% end %>
 
     <div class='field'>
-      <%= f.label t('.width') %>
+      <%= f.label :width, t('.width') %>
       <%= f.text_field :width %>
     </div>
     <div class='field'>
-      <%= f.label t('.height') %>
+      <%= f.label :height, t('.height') %>
       <%= f.text_field :height %>
     </div>
 
