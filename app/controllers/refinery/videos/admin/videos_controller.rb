@@ -5,7 +5,6 @@ module Refinery
 
         crudify :'refinery/videos/video',
                 :title_attribute => 'title',
-                :xhr_paging => true,
                 :order => 'position ASC',
                 :sortable => true
 

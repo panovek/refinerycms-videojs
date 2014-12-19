@@ -11,12 +11,12 @@ module Refinery
 
           app_videos = ::Dragonfly.app(:refinery_videos)
           app_videos.configure do
-            # datastore = ::Dragonfly::DataStorage::MongoDataStore.new(:db => MongoMapper.database)
+            # datastore ::Dragonfly::DataStorage::MongoDataStore.new(:db => MongoMapper.database)
             datastore :file, {
               :root_path => Refinery::Videos.datastore_root_path
             }
-            url_format = Refinery::Videos.dragonfly_url_format
-            secret = Refinery::Videos.dragonfly_secret
+            url_format Refinery::Videos.dragonfly_url_format
+            secret Refinery::Videos.dragonfly_secret
           end
 
           if ::Refinery::Videos.s3_backend
@@ -31,7 +31,7 @@ module Refinery
           end
         end
 
-        def attach!(app)
+        def attach!
           app.config.middleware.use ::Dragonfly::Middleware, :refinery_videos
         end
       end

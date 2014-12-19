@@ -8,7 +8,7 @@ module Refinery
 
       initializer 'attach-refinery-videos-with-dragonfly', :before => :finisher_hook do |app|
         ::Refinery::Videos::Dragonfly.configure!
-        ::Refinery::Videos::Dragonfly.attach!(app)
+        ::Refinery::Videos::Dragonfly.attach!
       end
 
       initializer "register refinerycms_videos plugin" do

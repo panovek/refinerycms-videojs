@@ -28,7 +28,7 @@ en:
             link: Link
             shared_source: Embedded
           new:
-            use_files: Use files
+            use_files: Upload a video file
             use_embedded_video: Use embedded video
           form:
             title: Title
@@ -55,7 +55,7 @@ en:
             add_source: Add source
             delete_source: Delete source
           embed_video_fields:
-            copy_embed_tag_here: Copy HTML here
+            copy_embed_tag_here: Copy HTML embed code here
           form_option_fields:
             options: Options
             autoplay: Autoplay

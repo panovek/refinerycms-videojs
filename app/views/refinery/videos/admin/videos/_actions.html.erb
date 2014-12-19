@@ -3,7 +3,7 @@
       <%= render '/refinery/admin/search', :url => refinery.videos_admin_videos_path %>
     </li>
   <li>
-    <%= link_to t('.create_new'), refinery.new_videos_admin_video_path,
+    <%= link_to t('.create_new'), refinery.new_videos_admin_video_path(embedded:'true'),
                  :class => "add_icon" %>
   </li>
 <% if !searching? && ::Refinery::Videos::Admin::VideosController.sortable? && ::Refinery::Videos::Video.any? %>
