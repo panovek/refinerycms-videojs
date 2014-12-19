@@ -23,10 +23,6 @@ module Refinery
           :controls => "true", :preload => "true", :loop => "true"
       }
 
-      attr_accessible :title, :poster_id, :video_files_attributes,
-                      :position, :config, :embed_tag, :use_shared,
-                      *CONFIG_OPTIONS.keys
-
       # Create getters and setters
       CONFIG_OPTIONS.keys.each do |option|
         define_method option do

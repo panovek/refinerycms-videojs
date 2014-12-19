@@ -5,16 +5,10 @@ module Refinery
     module Dragonfly
 
       class << self
-        def setup!
-          app_videos = ::Dragonfly.app(:refinery_videos)
-
-          app_videos.define_macro(::Refinery::Videos::VideoFile, :video_accessor)
-
-          app_videos.analyser.register(::Dragonfly::Analysis::FileCommandAnalyser)
-          app_videos.content_disposition = :attachment
-        end
-
         def configure!
+          ActiveRecord::Base.extend ::Dragonfly::Model
+          ActiveRecord::Base.extend ::Dragonfly::Model::Validations
+
           app_videos = ::Dragonfly.app(:refinery_videos)
           app_videos.configure do
             # datastore = ::Dragonfly::DataStorage::MongoDataStore.new(:db => MongoMapper.database)
