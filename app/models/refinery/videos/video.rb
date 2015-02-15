@@ -16,6 +16,8 @@ module Refinery
       belongs_to :poster, :class_name => '::Refinery::Image'
       accepts_nested_attributes_for :poster
 
+      scope :published, -> { where(is_active: true).order('created_at desc') }
+
       ################## Video config options
       serialize :config, Hash
       CONFIG_OPTIONS = {
@@ -57,7 +59,7 @@ module Refinery
           if file.use_external
             sources << ["<source src='#{file.external_url}' type='#{file.file_mime_type}'/>"]
           else
-            sources << ["<source src='#{file.file.remote_url}' type='#{file.file_mime_type}'/>"]
+            sources << ["<source src='#{file.file.url}' type='#{file.file_mime_type}'/>"]
           end if file.exist?
         end
         html = %Q{<video id="video_#{self.id}" class="video-js #{Refinery::Videos.skin_css_class}" width="#{config[:width]}" height="#{config[:height]}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
@@ -105,8 +107,8 @@ module Refinery
       end
 
       def one_source
-        errors.add(:embed_tag, 'Please embed video') if use_shared && embed_tag.nil?
-        errors.add(:video_files, 'Please select at least one source') if !use_shared && video_files.empty?
+        errors.add(:embed_tag, :empty_embed_tag) if use_shared && embed_tag.nil?
+        errors.add(:video_files, :empty_video_files) if !use_shared && video_files.empty?
       end
 
     end

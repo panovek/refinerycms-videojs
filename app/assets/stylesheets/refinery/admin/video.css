@@ -11,6 +11,14 @@ label.inline{
     margin-top: 0
 }
 
+.label.red {
+    color:#900;
+}
+
+.label.green {
+    color:green;
+}
+
 div.inline{
     display: inline-block;
     vertical-align: top;

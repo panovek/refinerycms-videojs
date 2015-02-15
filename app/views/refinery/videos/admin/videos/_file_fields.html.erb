@@ -1,6 +1,7 @@
 <label><%= t('.files') %></label>
 <div class='tips'><%= t('.file_tip') %></div>
 <div id='file_fields'>
+  <% @video.video_files.build if !@video.video_files.present? %>
   <%= f.fields_for :video_files do |v| %>
       <div class="parent">
         <label class="inline">
@@ -89,6 +90,4 @@
             }
         });
     }
-
-
 </script>

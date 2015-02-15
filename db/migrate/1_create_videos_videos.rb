@@ -10,6 +10,7 @@ class CreateVideosVideos < ActiveRecord::Migration
       t.integer  "poster_id"
       t.boolean  "use_shared"
       t.text     "embed_tag"
+      t.boolean  'is_active', default: false
     end
   end
 

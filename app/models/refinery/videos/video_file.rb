@@ -43,15 +43,12 @@ module Refinery
       private
 
       def set_mime_type
-        if use_external
-          type = external_url.scan(/\.\w+$/)
-          if type.present? && MIME_TYPES.has_key?(type.first)
-            self.file_mime_type = "video/#{MIME_TYPES[type.first]}"
-          else
-            self.file_mime_type = 'video/mp4'
-          end
+        type = use_external ? external_url.scan(/\.\w+$/) : file_name.scan(/\.\w+$/)
+        if type.present? && MIME_TYPES.has_key?(type.first)
+          self.file_mime_type = "video/#{MIME_TYPES[type.first]}"
+        else
+          self.file_mime_type = 'video/mp4'
         end
-
       end
 
 

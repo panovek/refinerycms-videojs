@@ -25,6 +25,8 @@ ru:
             file: Файл
             link: Ссылка
             shared_source: Встроенное
+            active: Активно
+            not_active: Не проверено
           new:
             use_files: Использовать файлы
             use_embedded_video: Ислользовать встроенное видео
@@ -33,6 +35,7 @@ ru:
             poster: Постер
             width: Ширина
             height: Высота
+            is_active: Опубликовано
           file_fields:
             files: Файлы
             file_tip: "Для полной совместимости, добавтье файлы (или ссылки на файлы) следующих форматов: 'mp4', 'webm', 'flv', 'ogg'"
@@ -75,3 +78,9 @@ ru:
         file_name: Имя файла
         file_size: Размер файла
         file_ext: Расширение файла
+        video_files: Видео файлы
+        embed_tag: Код вставляемого видео
+    errors:
+      messages:
+        empty_video_files: Не выбран видео файл. Выберите хотя бы один.
+        empty_embed_tag: Нет кода вставляемого видео. Пожалуйста вствьте код.

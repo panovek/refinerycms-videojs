@@ -34,6 +34,11 @@
       <%= f.text_field :height %>
     </div>
 
+    <div class='field'>
+      <%= f.check_box :is_active, { }, "true", "false" %>
+      <%= f.label :is_active, t('.is_active'), :class => 'input_label' %>
+    </div>
+
     <%= render('form_option_fields', :f => f) unless @embedded %>
 
     <%= render '/refinery/admin/form_actions',
