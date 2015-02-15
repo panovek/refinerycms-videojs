@@ -12,6 +12,8 @@ ru:
         videos:
           actions:
             create_new: Добавить видео
+            create_new_embedded: Добавить новое встроенное видео
+            upload_video: Загрузить новое видео
             reorder: Изменить порядок
             reorder_done: Закончить редактирование
           records:

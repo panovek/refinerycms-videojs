@@ -10,6 +10,16 @@ module Refinery
 
         before_filter :set_embedded, :only => [:new, :create]
 
+        # override because acts_as_indexed dont work with utf8
+        def index
+          if params[:search].present?
+            @videos = Video.where('LOWER(title) ILIKE ?', "%#{params[:search].downcase}%")
+          else
+            @videos = Video.all
+          end
+          @videos = @videos.order('created_at desc').paginate(:page => params[:page])
+        end
+
         def show
           @video = Video.find(params[:id])
         end
