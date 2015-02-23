@@ -22,6 +22,10 @@ module Refinery
         config.datastore_root_path || (Rails.root.join('public', 'system', 'refinery', 'videos').to_s if Rails.root)
       end
 
+      def s3_region
+        config.s3_region.nil? ? Refinery::Core.s3_region : config.s3_region
+      end
+
       def s3_backend
         config.s3_backend.nil? ? Refinery::Core.s3_backend : config.s3_backend
       end
