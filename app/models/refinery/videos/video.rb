@@ -40,7 +40,7 @@ module Refinery
       after_initialize :set_default_config
       #####################################
 
-      def to_html
+      def to_html(default_size = true)
         if use_shared
           update_from_config
           return embed_tag.html_safe
@@ -62,7 +62,7 @@ module Refinery
             sources << ["<source src='#{file.file.url}' type='#{file.file_mime_type}'/>"]
           end if file.exist?
         end
-        html = %Q{<video id="video_#{self.id}" class="video-js #{Refinery::Videos.skin_css_class}" width="#{config[:width]}" height="#{config[:height]}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
+        html = %Q{<video id="video_#{self.id}" class="video-js #{Refinery::Videos.skin_css_class} #{'form-control' if !default_size}" width="#{default_size ? config[:width] : ''}" height="#{default_size ? config[:height] : '150px'}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
 
         html.html_safe
       end

@@ -51,6 +51,7 @@
         }
     }
 
+
     $(function(){
         radio_control();
         $('div.parent').last().find('a.add_field').show();
@@ -61,7 +62,6 @@
         window.new_field = $('div.new_field').remove();
         $('input[checked="checked"]').attr('checked', 'checked');
     });
-
     function prepare_new_field(){
         var $inputs = window.new_field.find('input');
         var date = Number(new Date);
