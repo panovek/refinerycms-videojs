@@ -12,9 +12,9 @@ module Refinery
     self.dragonfly_url_format = '/system/videos/:job/:basename.:format'
     self.trust_file_extensions = false
     self.max_file_size = 524288000
-    self.pages_per_dialog = 7
+    self.pages_per_dialog = 9
     self.pages_per_admin_index = 20
-    self.whitelisted_mime_types = %w(video/mp4 video/x-flv application/ogg video/webm video/flv video/ogg)
+    self.whitelisted_mime_types = %w(video/mp4 video/x-flv application/ogg video/webm video/flv video/ogg video/avi video/quicktime)
     self.skin_css_class = "vjs-default-skin"
 
     class << self
