@@ -10,6 +10,11 @@
       <%= f.text_field :title, :required => true  %>
     </div>
 
+    <div class='field'>
+      <%= f.label :category -%>
+      <%= f.select :category_id, options_from_collection_for_select(Refinery::Videos::Category.all, 'id', 'name', @video.category_id), :class => "larger widest" -%>
+    </div>
+
     <% if @embedded %>
         <%= render 'embed_video_fields', :f => f %>
     <% else %>

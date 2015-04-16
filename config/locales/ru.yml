@@ -7,8 +7,25 @@ ru:
     plugins:
       videos:
         title: Видео
+      categories:
+        title: Категории видео
     videos:
       admin:
+        categories:
+          actions:
+            create_new: Добавить новую категорию
+            videos: Список видео роликов
+            reorder: Изменить порядок
+            reorder_done: Закончить изменение порядка
+          records:
+            title: Категории
+            sorry_no_results: Извините, ничего не найдено.
+            no_items_yet: Категории отсутствуют. Нажмите "Добавить новую категорию".
+          category:
+            view_live_html: Предварительный просмотр категории<br/><em>(открывается в новом окне)</em>
+            edit: Редактировать эту категорию
+            delete: Удалить эту категорию
+            confirm: "\nУдаление категории приведет к тому, что будут удалены все видео в этой категории!"
         videos:
           actions:
             create_new: Добавить видео
@@ -16,6 +33,7 @@ ru:
             upload_video: Загрузить новое видео
             reorder: Изменить порядок
             reorder_done: Закончить редактирование
+            categories: Список категорий видео
           records:
             title: Видео
             sorry_no_results: Извините, ничего не найдено.
@@ -76,6 +94,8 @@ ru:
           other: Другие видео
   activerecord:
     attributes:
+      refinery/videos/category:
+        name: Название
       'refinery/videos/video':
         file_name: Имя файла
         file_size: Размер файла

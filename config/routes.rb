@@ -17,6 +17,11 @@ Refinery::Core::Engine.routes.draw do
           get :dialog_preview
         end
       end
+      resources :categories, :except => :show do
+        collection do
+          post :update_positions
+        end
+      end
       resources :video_files, :only => [:destroy]
     end
   end

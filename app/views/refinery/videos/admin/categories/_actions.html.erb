@@ -1,0 +1,29 @@
+<ul>
+  <% if ::Refinery::Videos::Admin::CategoriesController.searchable? %>
+    <li>
+      <%= render '/refinery/admin/search', :url => refinery.videos_admin_categories_path %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to t('.videos'), refinery.videos_admin_videos_path,
+                :class => "go_icon" %>
+  </li>
+  <li>
+    <%= link_to t('.create_new'), refinery.new_videos_admin_category_path,
+                 :class => "add_icon" %>
+  </li>
+<% if !searching? && ::Refinery::Videos::Admin::CategoriesController.sortable? && ::Refinery::Videos::Category.many? %>
+  <li>
+    <%= link_to t('.reorder', :what => "Categories"),
+                 refinery.videos_admin_categories_path,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%= link_to t('.reorder_done', :what => "Categories"),
+                 refinery.videos_admin_categories_path,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  </li>
+<% end %>
+</ul>
