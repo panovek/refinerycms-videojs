@@ -14,6 +14,7 @@ module Refinery
       accepts_nested_attributes_for :video_files
 
       belongs_to :poster, :class_name => '::Refinery::Image'
+      belongs_to :category
       accepts_nested_attributes_for :poster
 
       scope :published, -> { where(is_active: true).order('created_at desc') }
@@ -22,7 +23,7 @@ module Refinery
       serialize :config, Hash
       CONFIG_OPTIONS = {
           :autoplay => "false", :width => "400", :height => "300",
-          :controls => "true", :preload => "true", :loop => "true"
+          :controls => "true", :preload => "false", :loop => "false"
       }
 
       # Create getters and setters
@@ -48,9 +49,14 @@ module Refinery
 
         data_setup = []
         CONFIG_OPTIONS.keys.each do |option|
-          if option && (option != :width && option != :height)
+          if option && (option != :width && option != :height && option != :preload)
             data_setup << "\"#{option}\": #{config[option] || '\"auto\"'}"
           end
+        end
+        if config[:preload] == 'false'
+          data_setup << "\"preload\": \"metadata\""
+        else
+          data_setup << "\"preload\": \"auto\""
         end
 
         data_setup << "\"poster\": \"#{poster.url}\"" if poster
@@ -62,7 +68,7 @@ module Refinery
             sources << ["<source src='#{file.file.url}' type='#{file.file_mime_type}'/>"]
           end if file.exist?
         end
-        html = %Q{<video id="video_#{self.id}" class="video-js #{Refinery::Videos.skin_css_class} #{'form-control' if !default_size}" width="#{default_size ? config[:width] : ''}" height="#{default_size ? config[:height] : '150px'}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
+        html = %Q{<video id="video_#{self.id}" data-id=#{self.id} class="video-js #{Refinery::Videos.skin_css_class} #{'form-control' if !default_size}" width="#{default_size ? config[:width] : ''}" height="#{default_size ? config[:height] : '150px'}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
 
         html.html_safe
       end
