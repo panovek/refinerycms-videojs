@@ -1,5 +1,4 @@
 # Refinery CMS Video.js
-## Sorry, not supported. See forks.
 Simple video extension for [Refinery CMS](http://refinerycms.com).
 It adds a 'Videos' tab to admin menu where you can manage videos.
 And adds an 'add video' link to WYMeditor on 'Pages'.
@@ -8,6 +7,7 @@ There are three ways to include videos in your project.
 - You can embedded video (like youtube or vimeo iframes)
 - You can upload files
 - You can use link to external source
+- You can set category of uploaded video
 
 Video (instance of `Refinery::Videos::Video` model) aggregates different sources (files and links, one or many).
 
@@ -67,4 +67,3 @@ And you're done.
 
 ## More Information
 - Check out Refinery CMS [guides](http://refinerycms.com/guides)
-- Check out our [website](http://adexin.com)
