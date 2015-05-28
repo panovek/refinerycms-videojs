@@ -9,6 +9,7 @@ module Refinery
     require 'refinery/videos/configuration'
     autoload :Dragonfly, 'refinery/videos/dragonfly'
     autoload :Validators, 'refinery/videos/validators'
+    autoload :PostprocessVideoWorker, 'refinery/videos/postprocess_video'
 
     class << self
       attr_writer :root

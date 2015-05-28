@@ -17,6 +17,8 @@ module Refinery
             }
             url_format Refinery::Videos.dragonfly_url_format
             secret Refinery::Videos.dragonfly_secret
+
+            plugin EnMasse::Dragonfly::FFMPEG::Plugin.new if ::Refinery::Videos.enable_postprocess
           end
 
           if ::Refinery::Videos.s3_backend

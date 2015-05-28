@@ -4,6 +4,7 @@ module Refinery
   module Videos
     class VideoFile < Refinery::Core::BaseModel
       dragonfly_accessor :file, :app => :refinery_videos
+      dragonfly_accessor :postprocessed_file, :app => :refinery_videos
 
       self.table_name = 'refinery_video_files'
       acts_as_indexed :fields => [:file_name, :file_ext]
@@ -24,8 +25,13 @@ module Refinery
       validates :external_url, :presence => true, :if => :use_external?
       #######################################
 
-      before_save :set_mime_type
+      before_save   :set_mime_type
       before_update :set_mime_type
+      after_save    :postprocess
+
+      def file
+        (Refinery::Videos.config[:enable_postprocess] && self.video.try(:postprocess_is_finished) && self.postprocessed_file.present?) ? self.postprocessed_file : self.dragonfly_attachments[:file].to_value
+      end
 
       def exist?
         use_external ? external_url.present? : file.present?
@@ -39,6 +45,10 @@ module Refinery
         end
       end
 
+      def postprocess
+        Refinery::Videos::PostprocessVideoWorker.perform_async(self.id) if Refinery::Videos.config[:enable_postprocess] && file_uid_changed?
+      end
+
       private
 
       def set_mime_type
@@ -49,8 +59,7 @@ module Refinery
           self.file_mime_type = 'video/mp4'
         end
       end
-
-
     end
+
   end
 end

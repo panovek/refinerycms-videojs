@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
 gemspec
+gem 'dragonfly-ffmpeg', github: 'beyondthestory/dragonfly-ffmpeg', branch: 'master'
+gem 'sidekiq'
 
 git 'https://github.com/refinery/refinerycms.git', :branch => 'master' do
   gem 'refinerycms'
