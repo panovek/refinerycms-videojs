@@ -5,10 +5,14 @@
       <% video.short_info.each do |info| %>
        <%= "#{t(info[0])}: #{info[1]}" %>
     <% end %>)</span>
+    </br>
     <% if video.is_active -%>
         <span class='label green'><%= t('.active')%></span>
     <% else -%>
         <span class='label red'><%= t('.not_active')%></span>
+    <% end -%>
+    <% if Refinery::Videos.config[:enable_postprocess] && !video.postprocess_is_finished -%>
+        <span class='label red'><%= t('.postprocess')%></span>
     <% end -%>
   </span>
   <% unless action_name =~ /insert/   %>

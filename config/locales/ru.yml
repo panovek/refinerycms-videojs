@@ -45,8 +45,9 @@ ru:
             file: Файл
             link: Ссылка
             shared_source: Встроенное
-            active: Активно
+            active: Идут показы
             not_active: Не проверено
+            postprocess: На обработке
           new:
             use_files: Использовать файлы
             use_embedded_video: Ислользовать встроенное видео
@@ -71,7 +72,7 @@ ru:
             maximum_file_size: "Максимальный размер файла: %{bytes}"
           new_file_field:
              use_file: Использовать файл
-             use_external_source: Использовать ссылку
+             use_external_sournot_activece: Использовать ссылку
              add_file: Добавить файл
              add_source: Добавить источник
              delete_source: Удалить источник

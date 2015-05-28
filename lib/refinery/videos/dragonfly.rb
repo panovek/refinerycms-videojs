@@ -1,4 +1,5 @@
 require 'dragonfly'
+require 'dragonfly-ffmpeg'
 
 module Refinery
   module Videos
@@ -18,7 +19,15 @@ module Refinery
             url_format Refinery::Videos.dragonfly_url_format
             secret Refinery::Videos.dragonfly_secret
 
-            plugin EnMasse::Dragonfly::FFMPEG::Plugin.new if ::Refinery::Videos.enable_postprocess
+            if ::Refinery::Videos.enable_postprocess
+              if Refinery::Videos.video_encoder_profile.is_a? Hash
+                # TODO: Make configure encoder_profiles. Need fix dragonfly-ffmpeg gem.
+                plugin :ffmpeg#, encoder_profiles: {custom_profile: [EnMasse::Dragonfly::FFMPEG::Encoder.Profile.new(:html5, Refinery::Videos.video_encoder_profile)]}
+                              #EnMasse::Dragonfly::FFMPEG::Config::apply_configuration app_videos, encoder_profiles: {custom_profile: [EnMasse::Dragonfly::FFMPEG::Encoder::Profile.new(:html5, Refinery::Videos.video_encoder_profile)]}
+              else
+                plugin :ffmpeg
+              end
+            end
           end
 
           if ::Refinery::Videos.s3_backend
