@@ -7,7 +7,6 @@ There are three ways to include videos in your project.
 - You can embedded video (like youtube or vimeo iframes)
 - You can upload files
 - You can use link to external source
-- You can set category of uploaded video
 
 Video (instance of `Refinery::Videos::Video` model) aggregates different sources (files and links, one or many).
 
@@ -36,6 +35,8 @@ This extension:
   * Allows you to manage playback configuration (poster image, width, height, autoplay, controls, etc).
   * Allows you to insert video to pages using WYMeditor, by inserting an HTML code with video (or iframe) tag.
   * Automatically downloads the video.js library on your website frontend.
+  * Allows you set category of uploading video
+  * Allows use postprocess background worker to encode video to uniform format after uploading
 
 ## Requirements
 Refinery CMS version 2.0.1 or above
