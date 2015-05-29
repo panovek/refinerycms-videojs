@@ -16,6 +16,11 @@
         <div class='field'>
           <div class="use_file" <%= raw "style='display: none;'" if v.object.use_external %>>
             <% if v.object.file.present? %>
+                <script src="//vjs.zencdn.net/4.8.1/video.js"></script>
+                <% if Refinery::Videos.config[:enable_postprocess] && !v.object.video.postprocess_is_finished %>
+                    <p><span class="label red"><%= t('.postprocess_not_finished') %></span></p>
+                <% end %>
+                <p><%= v.object.video.to_html %></p>
                 <% if v.object.url %>
                     <%= link_to(t('.download_current'), v.object.url,
                                 :title => v.object.file_name) %>
@@ -89,5 +94,10 @@
                 $parent.find('.use_external input').removeAttr('required');
             }
         });
-    }
+    };
+    $(document).ready(function(){
+        if ($('video').is('*')) {
+            $('body').append('<link href="//vjs.zencdn.net/4.8.1/video-js.css" rel="stylesheet">');
+        }
+    });
 </script>
