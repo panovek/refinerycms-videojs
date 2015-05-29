@@ -20,14 +20,16 @@ module Refinery
             secret Refinery::Videos.dragonfly_secret
 
             if ::Refinery::Videos.enable_postprocess
-              if Refinery::Videos.video_encoder_profile.is_a? Hash
-                # TODO: Make configure encoder_profiles. Need fix dragonfly-ffmpeg gem.
-                plugin :ffmpeg#, encoder_profiles: {custom_profile: [EnMasse::Dragonfly::FFMPEG::Encoder.Profile.new(:html5, Refinery::Videos.video_encoder_profile)]}
-                              #EnMasse::Dragonfly::FFMPEG::Config::apply_configuration app_videos, encoder_profiles: {custom_profile: [EnMasse::Dragonfly::FFMPEG::Encoder::Profile.new(:html5, Refinery::Videos.video_encoder_profile)]}
-              else
-                plugin :ffmpeg
-              end
+              plugin :ffmpeg
             end
+          end
+
+          if ::Refinery::Videos.enable_postprocess && Refinery::Videos.video_encoder_profiles.is_a?(Hash)
+            profiles = {}
+            Refinery::Videos.video_encoder_profiles.each do |key, value|
+              profiles[key] = [EnMasse::Dragonfly::FFMPEG::Encoder::Profile.new(:html5, value)]
+            end
+            app_videos.processors.items[:encode].encoder_profiles = profiles
           end
 
           if ::Refinery::Videos.s3_backend

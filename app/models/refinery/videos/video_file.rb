@@ -47,7 +47,7 @@ module Refinery
 
       def postprocess
         Refinery::Videos::PostprocessVideoWorker.perform_async(self.id,
-                                                               Refinery::Videos.config[:video_encoder_profile].is_a?(Hash) ? :custom_profile : Refinery::Videos.config[:video_encoder_profile],
+                                                               Refinery::Videos.config[:web_encoder_profile]
         ) if Refinery::Videos.config[:enable_postprocess] && file_uid_changed?
       end
 

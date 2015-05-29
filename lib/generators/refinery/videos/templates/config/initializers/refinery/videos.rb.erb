@@ -20,6 +20,8 @@ Refinery::Videos.configure do |config|
 
     # Set postprocess background encode video to uniform format
     # config.enable_postprocess = false
-    # Set profile of format to encode video
-    # config.video_encoder_profile = :mp4
+    # Set Hash profile of format to encode video
+    # config.video_encoder_profiles = {webm: {:video_codec => "libvpx", :audio_codec => "libvorbis"}}
+    # Set encode profile which will be use to encode video to web format
+    # config.web_encoder_profile = :webm
 end
