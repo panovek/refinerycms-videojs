@@ -22,6 +22,8 @@ Refinery::Videos.configure do |config|
     # config.enable_postprocess = false
     # Set Hash profile of format to encode video
     # config.video_encoder_profiles = {webm: {:video_codec => "libvpx", :audio_codec => "libvorbis"}}
+    # Set auto encoding uploaded video to web support formats (webm, mp4/h.264)
+    # config.enable_auto_encode_to_web_format = true
     # Set encode profile which will be use to encode video to web format
     # config.web_encoder_profile = :webm
 end

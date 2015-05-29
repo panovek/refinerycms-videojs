@@ -10,7 +10,7 @@ module Refinery
       acts_as_indexed :fields => [:file_name, :file_ext]
       belongs_to :video
 
-      MIME_TYPES = {'.avi' => 'avi', '.mp4' => 'mp4', '.flv' => 'flv', '.webm' => 'webm', '.ogg' => 'ogg', '.ogv' => 'ogg'}
+      MIME_TYPES = {'.wmv' => 'wmv', '.avi' => 'avi', '.mp4' => 'mp4', '.flv' => 'flv', '.webm' => 'webm', '.ogg' => 'ogg', '.ogv' => 'ogg'}
 
       ############################ Dragonfly
       delegate :ext, :size, :mime_type, :url,
@@ -47,7 +47,8 @@ module Refinery
 
       def postprocess
         Refinery::Videos::PostprocessVideoWorker.perform_async(self.id,
-                                                               Refinery::Videos.config[:web_encoder_profile]
+                                                               Refinery::Videos.config[:web_encoder_profile],
+                                                               Refinery::Videos.config[:enable_auto_encode_to_web_format]
         ) if Refinery::Videos.config[:enable_postprocess] && file_uid_changed?
       end
 
