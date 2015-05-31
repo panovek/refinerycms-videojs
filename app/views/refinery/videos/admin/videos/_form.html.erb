@@ -20,6 +20,14 @@
     <% else %>
         <div class='field'>
           <%= f.label t('.poster') %>
+          <% if @poster_examples %>
+              <%= hidden_field_tag(:selected_poster_example_time) %>
+              <p><%= t('.select_poster_image') %></p>
+              <% @poster_examples.each do |example| %>
+                  <%= image_tag example.values[0].url, class: "poster-example", data: {second: example.keys[0]} %>
+              <% end %>
+              <p><%= t('.or_new') %></p>
+          <% end %>
           <%= render '/refinery/admin/image_picker',
                      :f => f,
                      :field => :poster_id,

@@ -9,6 +9,8 @@ module Refinery
                 :sortable => true
 
         before_filter :set_embedded, :only => [:new, :create]
+        before_filter :set_poster_examples, :only => [:edit]
+        before_filter :set_poster, :only => [:update]
 
         # override because acts_as_indexed dont work with utf8
         def index
@@ -56,6 +58,26 @@ module Refinery
 
         def paginate_videos
           @videos = @videos.paginate(:page => params[:page], :per_page => Video.per_page(true))
+        end
+
+        def set_poster_examples
+          video_file = @video.video_files.first.file
+          unless @video.poster.present? && video_file.present?
+            geometry = "#{video_file.width}x#{video_file.height}"
+            @poster_examples = []
+            [1, 5, 10, 15].delete_if {|t| t > video_file.duration }.each do |time|
+              @poster_examples << {time => video_file.v_thumb(geometry, time)}
+            end
+          end
+        end
+
+        def set_poster
+          if params[:selected_poster_example_time].present?
+            video_file = @video.video_files.first.file
+            geometry = "#{video_file.width}x#{video_file.height}"
+            image = Refinery::Image.create(image: video_file.v_thumb(geometry, params[:selected_poster_example_time]))
+            params[:video][:poster_id] = image.id
+          end
         end
 
         def set_embedded

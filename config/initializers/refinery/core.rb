@@ -5,6 +5,7 @@ Refinery::Core.configure do |config|
                                      'source' => {'attributes' => {'1' => 'src', '2' => 'type'}}}
   # Register extra javascript for backend
   config.register_javascript "refinery/admin/wymeditor_monkeypatch.js"
+  config.register_javascript "refinery/admin/select_poster.js"
 
   #Register extra stylesheet for backend (optional options)
   config.register_stylesheet "refinery/admin/video.css"

@@ -96,3 +96,14 @@ div#dialog_list #records{
     width: 100%
 }
 
+.poster-example {
+    width: 125px;
+    height: 80px;
+    overflow: hidden;
+    padding: 5px;
+    border: 1px solid #ffffff;
+}
+
+.selected-poster, .poster-example:hover {
+    border: 1px solid green;
+}
