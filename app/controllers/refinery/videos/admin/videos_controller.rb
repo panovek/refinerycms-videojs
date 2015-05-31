@@ -63,7 +63,9 @@ module Refinery
         def set_poster_examples
           video_file = @video.video_files.first.file
           unless @video.poster.present? && video_file.present?
-            geometry = "#{video_file.width}x#{video_file.height}"
+            width = video_file.width
+            height = video_file.height
+            geometry = "#{width > 0 ? width : 125}x#{height > 0 ? height : 80}"
             @poster_examples = []
             [1, 5, 10, 15].delete_if {|t| t > video_file.duration }.each do |time|
               @poster_examples << {time => video_file.v_thumb(geometry, time)}
@@ -74,7 +76,9 @@ module Refinery
         def set_poster
           if params[:selected_poster_example_time].present?
             video_file = @video.video_files.first.file
-            geometry = "#{video_file.width}x#{video_file.height}"
+            width = video_file.width
+            height = video_file.height
+            geometry = "#{width > 0 ? width : 125}x#{height > 0 ? height : 80}"
             image = Refinery::Image.create(image: video_file.v_thumb(geometry, params[:selected_poster_example_time]))
             params[:video][:poster_id] = image.id
           end
