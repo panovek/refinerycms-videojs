@@ -37,6 +37,7 @@ This extension:
   * Automatically downloads the video.js library on your website frontend.
   * Allows you set category of uploading video
   * Allows use postprocess background worker to encode video to uniform format after uploading
+  * Generate example posters on edit video page
 
 ## Requirements
 Refinery CMS version 2.0.1 or above
