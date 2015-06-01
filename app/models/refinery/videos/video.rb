@@ -22,7 +22,7 @@ module Refinery
       ################## Video config options
       serialize :config, Hash
       CONFIG_OPTIONS = {
-          :autoplay => "false", :width => "400", :height => "300",
+          :autoplay => "false", :width => "300", :height => "187",
           :controls => "true", :preload => "false", :loop => "false"
       }
 
@@ -68,7 +68,7 @@ module Refinery
             sources << ["<source src='#{file.file.url}' type='#{file.file_mime_type}'/>"]
           end if file.exist?
         end
-        html = %Q{<video id="video_#{self.id}" data-id=#{self.id} class="video-js #{Refinery::Videos.skin_css_class} #{'form-control' if !default_size}" width="#{default_size ? config[:width] : ''}" height="#{default_size ? config[:height] : '150px'}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
+        html = %Q{<video id="video_#{self.id}" data-id=#{self.id} class="video-js #{Refinery::Videos.skin_css_class} #{'form-control' if !default_size}" width="#{default_size ? config[:width] : "#{CONFIG_OPTIONS[:width]}px"}" height="#{default_size ? config[:height] : "#{CONFIG_OPTIONS[:height]}px"}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
 
         html.html_safe
       end
