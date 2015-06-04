@@ -41,7 +41,10 @@ module Refinery
       after_initialize :set_default_config
       #####################################
 
-      def to_html(default_size = true)
+      #####
+      # params{width: 300, height: 300, extra_class: "form-control"}
+      #####
+      def to_html(params = {})
         if use_shared
           update_from_config
           return embed_tag.html_safe
@@ -68,7 +71,9 @@ module Refinery
             sources << ["<source src='#{file.file.url}' type='#{file.file_mime_type}'/>"]
           end if file.exist?
         end
-        html = %Q{<video id="video_#{self.id}" data-id=#{self.id} class="video-js #{Refinery::Videos.skin_css_class} #{'form-control' if !default_size}" width="#{default_size ? config[:width] : "#{CONFIG_OPTIONS[:width]}px"}" height="#{default_size ? config[:height] : "#{CONFIG_OPTIONS[:height]}px"}" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
+        width = params[:width].present? ? params[:width] : (config[:width].present? ? config[:width] : CONFIG_OPTIONS[:width])
+        height = params[:height].present? ? params[:height] : (config[:height].present? ? config[:height] : CONFIG_OPTIONS[:height])
+        html = %Q{<video id="video_#{self.id}" data-id=#{self.id} class="video-js #{Refinery::Videos.skin_css_class} #{params[:extra_class]}" width="#{width}px" height="#{height}px" data-setup=' {#{data_setup.join(',')}}'>#{sources.join}</video>}
 
         html.html_safe
       end
