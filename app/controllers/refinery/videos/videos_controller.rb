@@ -12,6 +12,10 @@ module Refinery
         end
       end
 
+      def show
+        @video = Video.find(params[:id])
+      end
+
     end
   end
 end
