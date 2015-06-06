@@ -53,6 +53,7 @@ ru:
             use_embedded_video: Ислользовать встроенное видео
           form:
             title: Название
+            created_by: "Было создано: %{user}"
             poster: Постер
             width: Ширина
             height: Высота

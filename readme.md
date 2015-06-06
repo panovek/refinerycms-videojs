@@ -27,6 +27,8 @@ This content can be added to a page in WYMeditor, or everywhere in your view lik
 ```erb
 <div class='video'>
   <%= @my_video.to_html %>
+  # OR
+  <%= @my_video.to_html(width: "300px", height: "90%", extra_class: "form-control") %>
 </div>
 ```
 
@@ -38,6 +40,8 @@ This extension:
   * Allows you set category of uploading video
   * Allows use postprocess background worker to encode video to uniform format after uploading
   * Generate example posters on edit video page
+  * Allows setup html render size and extra styles
+  * Video has creator user
 
 ## Requirements
 Refinery CMS version 2.0.1 or above
@@ -45,9 +49,6 @@ Refinery CMS version 2.0.1 or above
 ## Install
 Open up your ``Gemfile`` and add at the bottom this line:
 
-```ruby
-gem 'refinerycms-videojs'
-```
 Get the latest version with:
 ```ruby
 gem 'refinerycms-videojs', git: 'git@github.com:panovek/refinerycms-videojs.git'

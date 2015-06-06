@@ -14,6 +14,7 @@ module Refinery
       accepts_nested_attributes_for :video_files
 
       belongs_to :poster, :class_name => '::Refinery::Image'
+      belongs_to :created_by, :class_name => '::Refinery::User'
       belongs_to :category
       accepts_nested_attributes_for :poster
 

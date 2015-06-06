@@ -4,6 +4,10 @@
     <%= render '/refinery/admin/error_messages',
                :object              => @video,
                :include_object_name => true %>
+    <div class='field'>
+      <p><strong><%= t('.created_by', user: @video.created_by.present? ? @video.created_by.username : "анонимным пользователем") %></strong></p>
+      <%= hidden_field_tag(:created_by_id, @video.created_by) %>
+    </div>
 
     <div class='field'>
       <%= f.label :title, t('.title') %>
