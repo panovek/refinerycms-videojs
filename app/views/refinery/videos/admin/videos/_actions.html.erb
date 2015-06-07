@@ -3,16 +3,16 @@
       <%= render '/refinery/admin/search', :url => refinery.videos_admin_videos_path %>
     </li>
   <li>
-    <%= link_to t('.categories'), refinery.videos_admin_categories_path,
-                :class => "go_icon" %>
+    <%= link_to t('.categories'), refinery.videos_admin_categories_path, :class => "go_icon" %>
   </li>
   <li>
-    <%= link_to t('.create_new_embedded'), refinery.new_videos_admin_video_path(embedded:'true'),
-                 :class => "add_icon" %>
+    <%= link_to t('.tags'), refinery.videos_admin_tags_path, :class => "go_icon" %>
   </li>
   <li>
-    <%= link_to t('.upload_video'), refinery.new_videos_admin_video_path,
-                 :class => "add_icon" %>
+    <%= link_to t('.create_new_embedded'), refinery.new_videos_admin_video_path(embedded:'true'), :class => "add_icon" %>
+  </li>
+  <li>
+    <%= link_to t('.upload_video'), refinery.new_videos_admin_video_path, :class => "add_icon" %>
   </li>
 <% if !searching? && ::Refinery::Videos::Admin::VideosController.sortable? && ::Refinery::Videos::Video.any? %>
   <li>

@@ -1,0 +1,14 @@
+<li id="tag-<%= tag.id %>">
+  <div class="tag-name">
+    <%= tag.name %>
+  </div>
+  <div class="edit-tag-name" contenteditable data-id="<%= tag.id %>">
+    <%= tag.name %>
+  </div>
+  <%= link_to refinery_icon_tag("delete.png"), refinery.videos_admin_tag_path(tag),
+              :class => "cancel confirm-delete",
+              :title => t('.delete'),
+              data: {:confirm => t('message', :scope => 'refinery.admin.delete', :title => tag.name)},
+              remote: true,
+              :method => :delete %>
+</li>

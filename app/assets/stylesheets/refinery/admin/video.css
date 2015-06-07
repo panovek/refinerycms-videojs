@@ -107,3 +107,23 @@ div#dialog_list #records{
 .selected-poster, .poster-example:hover {
     border: 1px solid green;
 }
+
+.tag-name, .edit-tag-name {
+    float: left;
+    padding: 0px 5px 0px 5px;
+    margin-right: 10px;
+    width: 300px;
+}
+
+.tag-name {
+    overflow: hidden;
+}
+
+.tag-name:hover {
+    background-color: lightgreen;
+    padding: 0px 5px 0px 5px;
+}
+
+.edit-tag-name {
+    display: none;
+}

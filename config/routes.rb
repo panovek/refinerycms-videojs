@@ -24,6 +24,7 @@ Refinery::Core::Engine.routes.draw do
         end
       end
       resources :video_files, :only => [:destroy]
+      resources :tags, except: [:show, :new]
     end
   end
 

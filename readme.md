@@ -42,6 +42,7 @@ This extension:
   * Generate example posters on edit video page
   * Allows setup html render size and extra styles
   * Video has creator user
+  * Allows you manage and set tags to video
 
 ## Requirements
 Refinery CMS version 2.0.1 or above

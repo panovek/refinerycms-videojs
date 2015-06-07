@@ -5,6 +5,9 @@
     </li>
   <% end %>
   <li>
+    <%= link_to t('.tags'), refinery.videos_admin_tags_path, :class => "go_icon" %>
+  </li>
+  <li>
     <%= link_to t('.videos'), refinery.videos_admin_videos_path,
                 :class => "go_icon" %>
   </li>

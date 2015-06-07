@@ -6,6 +6,7 @@ module Refinery
 
       self.table_name = 'refinery_videos'
       acts_as_indexed :fields => [:title]
+      acts_as_taggable
 
       validates :title, :presence => true
       validate :one_source

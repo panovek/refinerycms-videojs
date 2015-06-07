@@ -11,9 +11,21 @@ ru:
         title: Категории видео
     videos:
       admin:
+        tags:
+          index:
+            edit: Редактировать этот тег
+            tags: Список тегов для видео роликов
+            add_new_tag: Добавить новый тег
+            add_new_tag_submit: Добавить
+          tag:
+            delete: Удалить этот тег
+          actions:
+            videos: Список видео роликов
+            categories: Список категорий видео
         categories:
           actions:
             create_new: Добавить новую категорию
+            tags: Список тегов видео
             videos: Список видео роликов
             reorder: Изменить порядок
             reorder_done: Закончить изменение порядка
@@ -34,8 +46,10 @@ ru:
             reorder: Изменить порядок
             reorder_done: Закончить редактирование
             categories: Список категорий видео
+            tags: Список тегов видео
           records:
             title: Видео
+            tags: Теги
             sorry_no_results: Извините, ничего не найдено.
             no_items_yet: Видео отсутствуют. Нажмите "Добавить видео".
           video:
@@ -53,6 +67,8 @@ ru:
             use_embedded_video: Ислользовать встроенное видео
           form:
             title: Название
+            select_tags: Выберите теги
+            no_results_text: Не найден тег
             created_by: "Было создано: %{user}"
             poster: Постер
             width: Ширина
@@ -62,7 +78,7 @@ ru:
             or_new: или добавьте свое изображение по ссылке ниже
           file_fields:
             files: Файлы
-            file_tip: "Для полной совместимости, добавтье файлы (или ссылки на файлы) следующих форматов: 'mp4', 'webm', 'flv', 'ogg', 'avi', 'wmv'"
+            file_tip: "Для полной совместимости, добавьте файлы следующих форматов: 'mp4', 'webm', 'flv', 'ogg', 'avi', 'wmv'"
             use_file: Использовать файл
             use_external_source: Использовать ссылку
             add_file: Добавить файл
@@ -107,6 +123,8 @@ ru:
         file_ext: Расширение файла
         video_files: Видео файлы
         embed_tag: Код вставляемого видео
+        tags: Теги
+        category: Категория
     errors:
       messages:
         empty_video_files: Не выбран видео файл. Выберите хотя бы один.

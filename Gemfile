@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gemspec
 gem 'dragonfly-ffmpeg', github: 'beyondthestory/dragonfly-ffmpeg', branch: 'master'
 gem 'sidekiq'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 git 'https://github.com/refinery/refinerycms.git', :branch => 'master' do
   gem 'refinerycms'

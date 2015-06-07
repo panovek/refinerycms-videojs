@@ -1,0 +1,4 @@
+<% if @tag.present? && !@tag.new_record? %>
+    $("ul.tag-list").append("<%= escape_javascript(render(partial: 'tag', locals: {tag: @tag})) %>");
+    $("#name").val("");
+<% end %>

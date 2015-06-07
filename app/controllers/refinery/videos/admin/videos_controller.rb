@@ -11,6 +11,7 @@ module Refinery
         before_filter :set_embedded, :only => [:new, :create]
         before_filter :set_poster_examples, :only => [:edit]
         before_filter :set_poster, :only => [:update]
+        after_filter  :create_tags, only: [:create, :update]
 
         # override because acts_as_indexed dont work with utf8
         def index
@@ -82,6 +83,13 @@ module Refinery
             geometry = "#{width > 0 ? width : 125}x#{height > 0 ? height : 80}"
             image = Refinery::Image.create(image: video_file.v_thumb(geometry, params[:selected_poster_example_time]))
             params[:video][:poster_id] = image.id
+          end
+        end
+
+        def create_tags
+          if params[:tags].present?
+            @video.tag_list = ActsAsTaggableOn::Tag.where(params[:tags]).pluck(:name).join(', ')
+            @video.save
           end
         end
 

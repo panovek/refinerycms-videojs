@@ -19,6 +19,11 @@
       <%= f.select :category_id, options_from_collection_for_select(Refinery::Videos::Category.all, 'id', 'name', @video.category_id), :class => "larger widest" -%>
     </div>
 
+    <div class='field'>
+      <%= f.label :tags -%>
+      <%= select_tag :tags, options_from_collection_for_select(ActsAsTaggableOn::Tag.all, 'id', 'name', @video.tags.map(&:id)), data: {placeholder: t('.select_tags')}, multiple: true, :class => "larger widest" -%>
+    </div>
+
     <% if @embedded %>
         <%= render 'embed_video_fields', :f => f %>
     <% else %>
@@ -65,3 +70,7 @@
                :delete_title        => t('delete', :scope => 'refinery.videos.admin.videos.video'),
                :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @video.title) %>
 <% end %>
+
+<script>
+    $("#tags").chosen({no_results_text: "<%= t('.no_results_text') %>"});
+</script>

@@ -1,0 +1,18 @@
+<section id='records'>
+  <h2><%= t('.tags') %></h2>
+
+  <%= form_tag refinery.videos_admin_tags_path, method: :post, remote: true do |f| -%>
+      <div class='field'>
+        <%= text_field_tag :name, nil, :class => '', placeholder: t('.add_new_tag') -%>
+        <input type="submit" value="<%= t('.add_new_tag_submit') %>" class="add_icon">
+      </div>
+
+  <% end -%>
+  <ul class="tag-list">
+    <%= render partial: 'tag', collection: @tags %>
+  </ul>
+</section>
+
+<aside id='actions'>
+  <%= render 'actions' %>
+</aside>

@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.name              = %q{refinerycms-videojs}
-  s.version           = %q{0.5.11.5}
+  s.version           = %q{0.6.1.2}
   s.summary           = %q{Videos extension for Refinery CMS}
   s.description       = %q{Manage videos in RefineryCMS. Use HTML5 Video.js player.}
   s.email             = %q{amishchuk@adexin.com}
@@ -18,4 +18,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'refinerycms-core'
   s.add_dependency 'sidekiq'
   s.add_dependency 'dragonfly-ffmpeg'
+  s.add_dependency 'acts-as-taggable-on'
 end

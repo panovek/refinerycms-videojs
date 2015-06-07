@@ -6,7 +6,10 @@ Refinery::Core.configure do |config|
   # Register extra javascript for backend
   config.register_javascript "refinery/admin/wymeditor_monkeypatch.js"
   config.register_javascript "refinery/admin/select_poster.js"
+  config.register_javascript "refinery/admin/tags.js"
+  config.register_javascript "refinery/admin/vendor/chosen.jquery.min.js"
 
   #Register extra stylesheet for backend (optional options)
   config.register_stylesheet "refinery/admin/video.css"
+  config.register_stylesheet "refinery/admin/vendor/chosen.min.css"
 end
