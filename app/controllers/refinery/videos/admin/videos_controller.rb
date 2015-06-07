@@ -88,7 +88,7 @@ module Refinery
 
         def create_tags
           if params[:tags].present?
-            @video.tag_list = ActsAsTaggableOn::Tag.where(params[:tags]).pluck(:name).join(', ')
+            @video.tag_list = ActsAsTaggableOn::Tag.where(id: params[:tags]).pluck(:name).join(', ')
             @video.save
           end
         end
