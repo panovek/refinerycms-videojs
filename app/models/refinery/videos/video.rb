@@ -12,6 +12,8 @@ module Refinery
       validate :one_source
 
       has_many :video_files, :dependent => :destroy
+      has_many :comments, :dependent => :destroy
+
       accepts_nested_attributes_for :video_files
 
       belongs_to :poster, :class_name => '::Refinery::Image'

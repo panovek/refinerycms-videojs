@@ -4,6 +4,7 @@ Refinery::Core::Engine.routes.draw do
   # Frontend routes
   namespace :videos do
     resources :videos, :path => '', :only => [:index, :show]
+    resources :comments, :path => '', :except => [:show, :new]
     put 'increase_looked/:id' => 'videos#increase_looked'
   end
 
