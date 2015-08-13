@@ -73,7 +73,7 @@ module Refinery
           if file.use_external
             sources << ["<source src='#{file.external_url}' type='#{file.file_mime_type}'/>"]
           else
-            sources << ["<source src='#{file.file.url}' type='#{file.file_mime_type}'/>"]
+            sources << ["<source src='#{Refinery::Videos.s3_backend ? file.file.remote_url : file.file.url}' type='#{file.file_mime_type}'/>"]
           end if file.exist?
         end
         width = params[:width].present? ? (params[:width].to_s.match(/\d+px|\d+%/) ? params[:width] : "#{params[:width]}px") : (config[:width].present? ? "#{config[:width]}px" : "#{CONFIG_OPTIONS[:width]}px")
