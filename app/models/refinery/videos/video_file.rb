@@ -31,7 +31,7 @@ module Refinery
 
       before_save   :set_mime_type
       before_update :set_mime_type
-      after_save    :postprocess
+      after_save    :set_duration, :postprocess
 
       def file(rate = 240)
         if Refinery::Videos.config[:enable_postprocess] && self.video.try(:postprocess_is_finished)
@@ -72,6 +72,13 @@ module Refinery
       end
 
       private
+
+      def set_duration
+        if file_uid_changed? || !self.video.duration.present?
+          file_duration = file.duration
+          self.video.update(duration: Time.at(file_duration).utc.strftime("#{file_duration < 3600 ? '%M:%S' : '%H:%M:%S'}"))
+        end
+      end
 
       def set_mime_type
         type = use_external ? external_url.scan(/\.\w+$/) : file_name.scan(/\.\w+$/)
