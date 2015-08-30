@@ -68,12 +68,19 @@ module Refinery
         end
 
         data_setup << "\"poster\": \"#{poster.url}\"" if poster
+        data_setup << "\"plugins\" : {\"resolutionSelector\" : {\"default_res\" : \"480\"}}"
         sources = []
         video_files.each do |file|
           if file.use_external
             sources << ["<source src='#{file.external_url}' type='#{file.file_mime_type}'/>"]
           else
-            sources << ["<source src='#{Refinery::Videos.s3_backend ? file.file.remote_url : file.file.url}' type='#{file.file_mime_type}'/>"]
+            if postprocess_is_finished
+              [240, 360, 480, 720, 1080].each do |rate|
+                sources << ["<source data-res='#{rate}' src='#{Refinery::Videos.s3_backend ? file.file(rate).remote_url : file.file(rate).url}' type='#{file.file_mime_type}'/>"] if file.file((rate)).present?
+              end
+            else
+              sources << ["<source src='#{Refinery::Videos.s3_backend ? file.file.remote_url : file.file.url}' type='#{file.file_mime_type}'/>"]
+            end
           end if file.exist?
         end
         width = params[:width].present? ? (params[:width].to_s.match(/\d+px|\d+%/) ? params[:width] : "#{params[:width]}px") : (config[:width].present? ? "#{config[:width]}px" : "#{CONFIG_OPTIONS[:width]}px")

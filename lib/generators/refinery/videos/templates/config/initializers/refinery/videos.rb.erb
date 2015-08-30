@@ -21,7 +21,27 @@ Refinery::Videos.configure do |config|
     # Set postprocess background encode video to uniform format
     # config.enable_postprocess = false
     # Set Hash profile of format to encode video
-    # config.video_encoder_profiles = {webm: {:video_codec => "libvpx", :audio_codec => "libvorbis"}}
+    #  config.video_encoder_profiles = {webm: {:video_codec => "libvpx"},
+    #                                 webm_240: {:video_codec => "libvpx",
+    #                                            :audio_codec => "libvorbis",
+    #                                            :video_bitrate => 300,
+    #                                            :custom => "-f webm -vf scale=-1:240"},
+    #                                 webm_360: {:video_codec => "libvpx",
+    #                                            :audio_codec => "libvorbis",
+    #                                            :video_bitrate => 500,
+    #                                            :custom => "-f webm -vf scale=-1:360"},
+    #                                 webm_480: {:video_codec => "libvpx",
+    #                                            :audio_codec => "libvorbis",
+    #                                            :video_bitrate => 2500,
+    #                                            :custom => "-f webm -vf scale=-1:480"},
+    #                                 webm_720: {:video_codec => "libvpx",
+    #                                            :audio_codec => "libvorbis",
+    #                                            :video_bitrate => 5000,
+    #                                            :custom => "-f webm -vf scale=-1:720"},
+    #                                 webm_1080: {:video_codec => "libvpx",
+    #                                             :audio_codec => "libvorbis",
+    #                                             :video_bitrate => 8000,
+    #                                             :custom => "-f webm -vf scale=-1:1080"}}
     # Set auto encoding uploaded video to web support formats (webm, mp4/h.264)
     # config.enable_auto_encode_to_web_format = true
     # Set encode profile which will be use to encode video to web format

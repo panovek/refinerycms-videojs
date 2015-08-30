@@ -16,12 +16,13 @@
         <div class='field'>
           <div class="use_file" <%= raw "style='display: none;'" if v.object.use_external %>>
             <% if v.object.file.present? %>
-                <script>$('body').append('<link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">');</script>
-                <script src="//vjs.zencdn.net/4.12/video.js"></script>
                 <% if Refinery::Videos.config[:enable_postprocess] && !v.object.video.postprocess_is_finished %>
-                    <p><span class="label red"><%= t('.postprocess_not_finished') %></span></p>
+                    <p><span class="label red"><%= t('.postprocess_not_finished_video') %></span></p>
+                <% else %>
+                    <script>$('body').append('<link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">');</script>
+                    <script src="//vjs.zencdn.net/4.12/video.js"></script>
+                    <p><%= v.object.video.to_html %></p>
                 <% end %>
-                <p><%= v.object.video.to_html %></p>
                 <% if v.object.url %>
                     <%= link_to(t('.download_current'), v.object.url,
                                 :title => v.object.file_name) %>

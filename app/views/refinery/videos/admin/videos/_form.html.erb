@@ -29,6 +29,9 @@
     <% else %>
         <div class='field'>
           <%= f.label t('.poster') %>
+          <% if Refinery::Videos.config[:enable_postprocess] && !@video.postprocess_is_finished %>
+              <p><span class="label red"><%= t('.postprocess_not_finished_poster') %></span></p>
+          <% end %>
           <% if @poster_examples %>
               <%= hidden_field_tag(:selected_poster_example_time) %>
               <p><%= t('.select_poster_image') %></p>

@@ -39,6 +39,7 @@ This extension:
   * Automatically downloads the video.js library on your website frontend.
   * Allows you set category of uploading video
   * Allows use postprocess background worker to encode video to uniform format after uploading
+  * Allows generate multi resolution video form original in postprocess
   * Generate example posters on edit video page
   * Allows setup html render size and extra styles
   * Video has creator user

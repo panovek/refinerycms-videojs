@@ -3,11 +3,10 @@
 Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.name              = %q{refinerycms-videojs}
-  s.version           = %q{0.6.1.2}
+  s.version           = %q{0.6.2.0}
   s.summary           = %q{Videos extension for Refinery CMS}
   s.description       = %q{Manage videos in RefineryCMS. Use HTML5 Video.js player.}
-  s.email             = %q{amishchuk@adexin.com}
-  s.homepage          = %q{http://www.adexin.com}
+  s.email             = %q{amishchuk@adexin.com, panov.eduard.k@gmail.com}
   s.rubyforge_project = %q{refinerycms-videojs}
   s.authors           = ['Anton Mishchuk, Eduard Panov']
   s.license           = %q{MIT}

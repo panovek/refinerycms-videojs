@@ -63,14 +63,16 @@ module Refinery
         end
 
         def set_poster_examples
-          video_file = @video.video_files.first.file
-          unless @video.poster.present? && video_file.present?
-            width = video_file.width
-            height = video_file.height
-            geometry = "#{width > 0 ? width : 125}x#{height > 0 ? height : 80}"
-            @poster_examples = []
-            [1, 5, 10, 15].delete_if {|t| t > video_file.duration }.each do |time|
-              @poster_examples << {time => video_file.v_thumb(geometry, time)}
+          if Refinery::Videos.config[:enable_postprocess] && @video.postprocess_is_finished
+            video_file = @video.video_files.first.file
+            unless @video.poster.present? && video_file.present?
+              width = video_file.width
+              height = video_file.height
+              geometry = "#{width > 0 ? width : 125}x#{height > 0 ? height : 80}"
+              @poster_examples = []
+              [1, 5, 10, 15].delete_if {|t| t > video_file.duration }.each do |time|
+                @poster_examples << {time => video_file.v_thumb(geometry, time)}
+              end
             end
           end
         end
