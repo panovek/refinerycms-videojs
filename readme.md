@@ -44,6 +44,7 @@ This extension:
   * Allows setup html render size and extra styles
   * Video has creator user
   * Allows you manage and set tags to video
+  * Allows you manage video description
 
 ## Requirements
 Refinery CMS version 2.0.1 or above

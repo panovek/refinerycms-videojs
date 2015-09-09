@@ -20,6 +20,13 @@
     </div>
 
     <div class='field'>
+      <%= render '/refinery/admin/wysiwyg',
+                 :f => f,
+                 :fields => [:description],
+                 :object => "videos/video" -%>
+    </div>
+
+    <div class='field'>
       <%= f.label :tags -%>
       <%= select_tag :tags, options_from_collection_for_select(ActsAsTaggableOn::Tag.all, 'id', 'name', @video.tags.map(&:id)), data: {placeholder: t('.select_tags')}, multiple: true, :class => "larger widest" -%>
     </div>

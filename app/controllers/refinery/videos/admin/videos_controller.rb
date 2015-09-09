@@ -100,7 +100,7 @@ module Refinery
         end
 
         def video_params
-          params.require(:video).permit(:created_by_id, :title, :category_id, :poster_id, :position, :config, :embed_tag, :is_active, :use_shared, *Refinery::Videos::Video::CONFIG_OPTIONS.keys, :video_files_attributes => ['use_external', 'file', 'external_url', 'id'])
+          params.require(:video).permit(:created_by_id, :title, :description, :category_id, :poster_id, :position, :config, :embed_tag, :is_active, :use_shared, *Refinery::Videos::Video::CONFIG_OPTIONS.keys, :video_files_attributes => ['use_external', 'file', 'external_url', 'id'])
         end
 
       end

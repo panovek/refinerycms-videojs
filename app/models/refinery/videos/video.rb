@@ -74,12 +74,12 @@ module Refinery
           if file.use_external
             sources << ["<source src='#{file.external_url}' type='#{file.file_mime_type}'/>"]
           else
-            if postprocess_is_finished
+            if Refinery::Videos.config[:enable_postprocess] && postprocess_is_finished
               [240, 360, 480, 720, 1080].each do |rate|
                 sources << ["<source data-res='#{rate}' src='#{Refinery::Videos.s3_backend ? file.file(rate).remote_url : file.file(rate).url}' type='#{file.file_mime_type}'/>"] if file.file((rate)).present?
               end
-            else
-              sources << ["<source src='#{Refinery::Videos.s3_backend ? file.file.remote_url : file.file.url}' type='#{file.file_mime_type}'/>"]
+            else if !Refinery::Videos.config[:enable_postprocess]
+               sources << ["<source src='#{Refinery::Videos.s3_backend ? file.file.remote_url : file.file.url}' type='#{file.file_mime_type}'/>"]
             end
           end if file.exist?
         end

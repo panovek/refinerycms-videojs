@@ -67,6 +67,7 @@ ru:
             use_embedded_video: Ислользовать встроенное видео
           form:
             title: Название
+            description: Описание видео
             select_tags: Выберите теги
             no_results_text: Не найден тег
             created_by: "Было создано: %{user}"
