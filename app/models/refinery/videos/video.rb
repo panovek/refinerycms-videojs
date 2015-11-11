@@ -45,6 +45,14 @@ module Refinery
       after_initialize :set_default_config
       #####################################
 
+      before_create :set_name
+
+      def set_name
+        video_files.each do |video_file|
+          video_file.file.name = ActiveSupport::Inflector.transliterate(video_file.file.name)
+        end
+      end
+
       #####
       # params{width: 300, height: 300, extra_class: "form-control"}
       # params{width: "300px", height: "90%", extra_class: "form-control"}
